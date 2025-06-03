@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+* {
+  box-sizing: border-box;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  font-family: 'Poppins', sans-serif;
+  color: #e0e7ff;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 1.5rem;
+}
+
+h1 {
+  font-weight: 600;
+  font-size: 3.8rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 1.8rem;
+  text-transform: uppercase;
+  color: #a5b4fc;
+  text-shadow:
+    0 0 8px #7c3aed,
+    0 0 20px #7c3aed80;
+}
+
+button {
+  background: linear-gradient(270deg, #7c3aed, #4f46e5, #7c3aed);
+  background-size: 600% 600%;
+  padding: 18px 54px;
+  border: none;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: #fff;
+  cursor: pointer;
+  box-shadow:
+    0 0 10px #7c3aed,
+    0 4px 15px #7c3aed50;
+  transition: background-position 3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  outline-offset: 4px;
+}
+
+button:hover {
+  background-position: 100% 0;
+  box-shadow:
+    0 0 18px #a78bfa,
+    0 6px 25px #a78bfaaa;
+  transform: translateY(-6px) scale(1.05);
+}
+
+button:active {
+  transform: translateY(2px) scale(0.98);
+  box-shadow: 0 0 12px #7c3aedbb;
+}
+
+#results {
+  margin-top: 50px;
+  min-width: 340px;
+  max-width: 460px;
+  background: rgba(31, 41, 55, 0.65);
+  border-radius: 24px;
+  padding: 40px 50px;
+  box-shadow:
+    0 8px 32px rgba(124, 58, 237, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  text-align: center;
+  user-select: text;
+}
+
+#results p {
+  font-size: 1.8rem;
+  margin: 18px 0;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #dbeafe;
+  text-shadow: 0 0 6px #7c3aedcc;
+  animation: pulse 3s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    text-shadow:
+      0 0 6px #7c3aedcc,
+      0 0 14px #a78bfa77;
+    color: #e0e7ff;
+  }
+  50% {
+    text-shadow:
+      0 0 14px #a78bfaee,
+      0 0 28px #c4b5fdcc;
+    color: #f0f5ff;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2.8rem;
+  }
+  button {
+    padding: 14px 42px;
+    font-size: 1.1rem;
+  }
+  #results {
+    min-width: 280px;
+    max-width: 320px;
+    padding: 32px 36px;
+  }
+  #results p {
+    font-size: 1.3rem;
+  }
+}
